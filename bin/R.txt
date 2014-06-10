@@ -120,7 +120,7 @@ int id grayscale 0x7f060012
 int id holo_dark 0x7f060005
 int id holo_light 0x7f060006
 int id hybrid 0x7f060004
-int id id_textview 0x7f060016
+int id identifier_textview 0x7f060016
 int id map_fragment 0x7f06001b
 int id match_parent 0x7f06000c
 int id monochrome 0x7f060013
@@ -134,7 +134,7 @@ int id satellite 0x7f060002
 int id selectionDetails 0x7f06000b
 int id solutionDateTableRow 0x7f060018
 int id solution_date_textview 0x7f060019
-int id status_textview 0x7f060015
+int id state_textview 0x7f060015
 int id strict_sandbox 0x7f060009
 int id switcher 0x7f06001d
 int id terrain 0x7f060003
@@ -189,7 +189,7 @@ int string common_signin_button_text_long 0x7f04001e
 int string empty 0x7f040031
 int string empty_list_message 0x7f04002a
 int string hello_world 0x7f040021
-int string id 0x7f04002d
+int string identifier 0x7f04002d
 int string import_breakdown 0x7f040029
 int string map_layers 0x7f040032
 int string number_of_photos 0x7f040030
@@ -199,7 +199,7 @@ int string sort_by_added_date 0x7f040026
 int string sort_by_solution_date 0x7f040027
 int string sort_by_status 0x7f040025
 int string sort_by_title 0x7f040024
-int string status 0x7f04002c
+int string state 0x7f04002c
 int string title 0x7f04002b
 int string type_hybrid 0x7f040034
 int string type_normal 0x7f040033

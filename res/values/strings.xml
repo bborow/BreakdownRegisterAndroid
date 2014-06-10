@@ -19,8 +19,8 @@
     <string name="empty_list_message">No breakdown has been added yet</string>
     
     <string name="title">Title:</string>
-    <string name="status">Status:</string>
-    <string name="id">Id:</string>
+    <string name="state">State:</string>
+    <string name="identifier">Identifier:</string>
     <string name="added_date">Added date:</string>
     <string name="solution_date">Solution date:</string>
     <string name="number_of_photos">Number of photos:</string>

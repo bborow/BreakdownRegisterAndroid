@@ -1,18 +1,30 @@
 package pl.edu.uj.matinf.parkitna.breakdownregister.screens;
 
+import pl.edu.uj.matinf.parkitna.breakdownregister.BreakdownListAdapter;
 import pl.edu.uj.matinf.parkitna.breakdownregister.R;
+import pl.edu.uj.matinf.parkitna.breakdownregister.database.DatabaseAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class BreakdownListActivity extends ListActivity{
 
+	private DatabaseAdapter databaseAdapter;
+	private ListView listView;
+	private BreakdownListAdapter listAdapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.breakdown_list_activity_layout);
+		databaseAdapter = new DatabaseAdapter(getApplicationContext());
+		listView = getListView();
+		databaseAdapter.open();
+		listAdapter = new BreakdownListAdapter(this, databaseAdapter.selectAll());
+		listView.setAdapter(listAdapter);
 	}
 
 	@Override
@@ -41,5 +53,11 @@ public class BreakdownListActivity extends ListActivity{
 			break;
 		}
 		return true;
+	}
+	
+	@Override
+	protected void onDestroy() {
+		databaseAdapter.close();
+		super.onDestroy();
 	}
 }

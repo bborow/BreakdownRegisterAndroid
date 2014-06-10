@@ -3,7 +3,9 @@ package pl.edu.uj.matinf.parkitna.breakdownregister.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 
+import pl.edu.uj.matinf.parkitna.breakdownregister.RandomString;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -12,58 +14,151 @@ public class Breakdown implements Serializable, Parcelable {
 	private static final long serialVersionUID = 120145357848000830L;
 
 	public static final TitleComparator TITLE_COMPARATOR = new TitleComparator();
-	public static final EntryDateComparator ENTRY_DATE_COMPARATOR = new EntryDateComparator();
+	public static final AddedDateComparator ADDED_DATE_COMPARATOR = new AddedDateComparator();
 	public static final SolutionDateComparator SOLUTION_DATE_COMPARATOR = new SolutionDateComparator();
-	public static final StatusComparator STATUS_COMPARATOR = new StatusComparator();
+	public static final StateComparator STATE_COMPARATOR = new StateComparator();
 
-	public String id;
-	public String title;
-	public String description;
-	public String status;
-	public String addedDate;
-	public String solutionDate;
-	public String longitude;
-	public String latitude;
-	public ArrayList<String> photoPaths;
-	public long timestamp;
+	public static final String STATE_FIXED = "fixed";  
+	public static final String STATE_NOT_FIXED = "not fixed";  
+	
+	private long id;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
+	public static String getStateFixed() {
+		return STATE_FIXED;
+	}
+
+	public static String getStateNotFixed() {
+		return STATE_NOT_FIXED;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public long getAddedDateInMilis() {
+		return addedDateInMilis;
+	}
+
+	public long getSolutionDateInMilis() {
+		return solutionDateInMilis;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public ArrayList<String> getPhotoPathList() {
+		return photoPathList;
+	}
+
+	public long getModifiedAt() {
+		return modifiedAt;
+	}
+
+	private String identifier = new RandomString(8).nextString();
+	private String title = "";
+	private String description = "";
+	private String state = STATE_NOT_FIXED;
+	private long addedDateInMilis = 0;
+	private long solutionDateInMilis = 0;
+	private double longitude = 0.0;
+	private double latitude = 0.0;
+	private ArrayList<String> photoPathList;
+	private long modifiedAt = new Date().getTime();
+
+	
+	public static class Builder{
+		public long id;
+		public String identifier = new RandomString(8).nextString();
+		public String title = "";
+		public String description = "";
+		public String state = STATE_NOT_FIXED;
+		public long addedDateInMilis = 0;
+		public long solutionDateInMilis = 0;
+		public double longitude = 0.0;
+		public double latitude = 0.0;
+		public ArrayList<String> photoPathList;
+		public long modifiedAt = new Date().getTime();
+		
+		public Breakdown create(){
+			return new Breakdown(
+					id, identifier, title, description,
+					state, addedDateInMilis, solutionDateInMilis, 
+					longitude, latitude, photoPathList, modifiedAt);
+		}
+	}
+	
+	
 	public Breakdown() {
 	}
 
-	public Breakdown(String id, String title, String description,
-			String status, String entryDate, String solutionDate,
-			String longitude, String latitude, ArrayList<String> photoPaths, long timestamp) {
+	public Breakdown(long id, String identifier, String title, String description,
+			String state, long addedDateInMilis, long solutionDateInMilis,
+			double longitude, double latitude, ArrayList<String> photoPathList, long modifiedAt) {
+			this.id = id;
+			this.identifier = identifier;
+			this.title = title;
+			this.description = description;
+			this.state = state;
+			this.addedDateInMilis = addedDateInMilis;
+			this.solutionDateInMilis = solutionDateInMilis;
+			this.longitude = longitude;
+			this.latitude = latitude;
+			this.photoPathList = new ArrayList<String>(photoPathList);
+			this.modifiedAt = modifiedAt;
+	}
 
-		this(title, description, entryDate, longitude, latitude, photoPaths);
+
+	public Breakdown(Breakdown other) {
+		identifier = other.identifier;
+		title = other.title;
+		description = other.description;
+		state = other.state;
+		addedDateInMilis = other.addedDateInMilis;
+		solutionDateInMilis = other.solutionDateInMilis;
+		longitude = other.longitude;
+		latitude = other.latitude;
+		photoPathList = new ArrayList<String>(other.photoPathList);
+		modifiedAt = other.modifiedAt;
+	}
+
+	public void setId(long id){
 		this.id = id;
-		this.status = status;
-		if (solutionDate == null)
-			this.solutionDate = "";
-		else
-			this.solutionDate = solutionDate;
-		this.timestamp = timestamp;
+	}
+	
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	public Breakdown(String title, String description, String entryDate,
-			String longitude, String latitude, ArrayList<String> pathToPhotos) {
-		this.title = title;
-		this.description = description;
-		this.addedDate = entryDate;
-		this.longitude = longitude;
-		this.latitude = latitude;
-		this.photoPaths = pathToPhotos;
+	public void setFixedDateInMilis(long fixedDateInMilis) {
+		this.solutionDateInMilis = fixedDateInMilis;
 	}
 
-	public Breakdown(Breakdown src) {
-		id = src.id;
-		title = src.title;
-		description = src.description;
-		status = src.status;
-		addedDate = src.addedDate;
-		solutionDate = src.solutionDate;
-		longitude = src.longitude;
-		latitude = src.latitude;
-		photoPaths = new ArrayList<String>(src.photoPaths);
+	public void setModifiedAt(long modifiedAt) {
+		this.modifiedAt = modifiedAt;
 	}
 
 	private static class TitleComparator implements Comparator<Breakdown> {
@@ -73,33 +168,27 @@ public class Breakdown implements Serializable, Parcelable {
 		}
 	}
 
-	private static class EntryDateComparator implements Comparator<Breakdown> {
+	private static class AddedDateComparator implements Comparator<Breakdown> {
 
 		@Override
 		public int compare(Breakdown lhs, Breakdown rhs) {
-			return lhs.addedDate.compareTo(rhs.addedDate);
-		}
-
-	}
-
-	private static class SolutionDateComparator implements
-			Comparator<Breakdown> {
-
-		@Override
-		public int compare(Breakdown lhs, Breakdown rhs) {
-			if (lhs.solutionDate.equals(""))
-				return 1;
-			if (rhs.solutionDate.equals(""))
-				return -1;
-			return lhs.solutionDate.compareTo(rhs.solutionDate);
+			return (int) (lhs.addedDateInMilis - rhs.addedDateInMilis);
 		}
 	}
 
-	private static class StatusComparator implements Comparator<Breakdown> {
+	private static class SolutionDateComparator implements Comparator<Breakdown> {
 
 		@Override
 		public int compare(Breakdown lhs, Breakdown rhs) {
-			return lhs.status.compareTo(rhs.status);
+			return (int) (lhs.solutionDateInMilis - rhs.solutionDateInMilis);
+		}
+	}
+
+	private static class StateComparator implements Comparator<Breakdown> {
+
+		@Override
+		public int compare(Breakdown lhs, Breakdown rhs) {
+			return lhs.state.compareTo(rhs.state);
 		}
 
 	}
@@ -112,28 +201,31 @@ public class Breakdown implements Serializable, Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(id);
+		dest.writeLong(id);
+		dest.writeString(identifier);
 		dest.writeString(title);
 		dest.writeString(description);
-		dest.writeString(status);
-		dest.writeString(addedDate);
-		dest.writeString(solutionDate);
-		dest.writeString(longitude);
-		dest.writeString(latitude);
-		dest.writeList(photoPaths);
+		dest.writeString(state);
+		dest.writeLong(addedDateInMilis);
+		dest.writeLong(solutionDateInMilis);
+		dest.writeDouble(longitude);
+		dest.writeDouble(latitude);
+		dest.writeList(photoPathList);
+		dest.writeLong(modifiedAt);
 	}
 
 	public Breakdown(Parcel in) {
-		this.id = in.readString();
-		this.title = in.readString();
-		this.description = in.readString();
-		this.status = in.readString();
-		this.addedDate = in.readString();
-		this.solutionDate = in.readString();
-		this.longitude = in.readString();
-		this.latitude = in.readString();
-		this.photoPaths = new ArrayList<String>();
-		in.readList(this.photoPaths, null);
+		id = in.readLong();
+		identifier = in.readString();
+		title = in.readString();
+		description = in.readString();
+		state = in.readString();
+		addedDateInMilis = in.readLong();
+		solutionDateInMilis = in.readLong();
+		longitude = in.readDouble();
+		latitude = in.readDouble();
+		photoPathList = new ArrayList<String>();
+		in.readList(photoPathList, null);
 	}
 
 	public static final Parcelable.Creator<Breakdown> CREATOR = new Parcelable.Creator<Breakdown>() {
@@ -145,35 +237,4 @@ public class Breakdown implements Serializable, Parcelable {
 			return new Breakdown[size];
 		}
 	};
-
-	@Override
-	public boolean equals(Object otherObject) {
-		if (this == otherObject)
-			return true;
-		if (otherObject == null)
-			return false;
-		if (getClass() != otherObject.getClass())
-			return false;
-		Breakdown other = (Breakdown) otherObject;
-		return id.equals(other.id) && title.equals(other.title)
-				&& description.equals(other.description)
-				&& status.equals(other.status)
-				&& addedDate.equals(other.addedDate)
-				&& solutionDate.equals(other.solutionDate)
-				&& longitude.equals(other.longitude)
-				&& latitude.equals(other.latitude)
-				&& photoPaths.equals(other.photoPaths);
-	}
-
-	public boolean equalsWithoutId(Breakdown otherFailure) {
-		return title.equals(otherFailure.title)
-				&& description.equals(otherFailure.description)
-				&& status.equals(otherFailure.status)
-				&& addedDate.equals(otherFailure.addedDate)
-				&& solutionDate.equals(otherFailure.solutionDate)
-				&& longitude.equals(otherFailure.longitude)
-				&& latitude.equals(otherFailure.latitude)
-				&& photoPaths.equals(otherFailure.photoPaths);
-	}
-
 }

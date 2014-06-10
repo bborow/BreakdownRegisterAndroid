@@ -437,7 +437,7 @@ containing a value of this type.
         public static final int holo_dark=0x7f060005;
         public static final int holo_light=0x7f060006;
         public static final int hybrid=0x7f060004;
-        public static final int id_textview=0x7f060016;
+        public static final int identifier_textview=0x7f060016;
         public static final int map_fragment=0x7f06001b;
         public static final int match_parent=0x7f06000c;
         public static final int monochrome=0x7f060013;
@@ -451,7 +451,7 @@ containing a value of this type.
         public static final int selectionDetails=0x7f06000b;
         public static final int solutionDateTableRow=0x7f060018;
         public static final int solution_date_textview=0x7f060019;
-        public static final int status_textview=0x7f060015;
+        public static final int state_textview=0x7f060015;
         public static final int strict_sandbox=0x7f060009;
         public static final int switcher=0x7f06001d;
         public static final int terrain=0x7f060003;
@@ -578,7 +578,7 @@ containing a value of this type.
         public static final int empty=0x7f040031;
         public static final int empty_list_message=0x7f04002a;
         public static final int hello_world=0x7f040021;
-        public static final int id=0x7f04002d;
+        public static final int identifier=0x7f04002d;
         public static final int import_breakdown=0x7f040029;
         public static final int map_layers=0x7f040032;
         public static final int number_of_photos=0x7f040030;
@@ -588,7 +588,7 @@ containing a value of this type.
         public static final int sort_by_solution_date=0x7f040027;
         public static final int sort_by_status=0x7f040025;
         public static final int sort_by_title=0x7f040024;
-        public static final int status=0x7f04002c;
+        public static final int state=0x7f04002c;
         public static final int title=0x7f04002b;
         public static final int type_hybrid=0x7f040034;
         public static final int type_normal=0x7f040033;

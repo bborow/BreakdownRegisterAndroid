@@ -21,23 +21,13 @@ public class BreakdownPhotosFragment extends Fragment implements
 AdapterView.OnItemSelectedListener, ViewSwitcher.ViewFactory{
 
 	
-	private Integer[] mThumbIds = { R.drawable.thumb_ic_action_bluetooth,
-			R.drawable.thumb_ic_action_camera, R.drawable.thumb_ic_action_map,
-			R.drawable.thumb_ic_action_new };
-
-	private Integer[] mImageIds = { R.drawable.ic_action_bluetooth,
-			R.drawable.ic_action_camera, R.drawable.ic_action_map,
-			R.drawable.ic_action_new };
-
 	private ImageSwitcher mSwitcher;
-	
-	
 	
 	
 	public static BreakdownPhotosFragment newInstance(Breakdown breakdown){
 		BreakdownPhotosFragment photosFragment = new BreakdownPhotosFragment();
 		Bundle args = new Bundle();
-		args.putParcelable("obtainedBreakdown", breakdown);
+//		args.putParcelable("obtainedBreakdown", breakdown);
 		photosFragment.setArguments(args);
 		return photosFragment;
 	}
