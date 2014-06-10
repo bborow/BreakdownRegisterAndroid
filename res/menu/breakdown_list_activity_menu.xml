@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+	<item
+        android:id="@+id/action_add_breakdown"
+        android:icon="@drawable/ic_action_new"
+        android:showAsAction="always"       
+        android:title="@string/add"
+        android:orderInCategory="1"/>
+	<item
+	    android:icon="@drawable/ic_action_bluetooth"
+	    android:showAsAction="always"
+	    android:orderInCategory="2"
+	    android:title="@string/import_breakdown">
+	    <menu>
+	        <item
+	             android:id="@+id/action_import_breakdown"
+	             android:title="@string/import_breakdown"
+	            />
+	    </menu>
+	</item>
+	<item
+        android:id="@+id/action_sort"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="@string/sort"
+        android:showAsAction="always"
+        android:orderInCategory="3">
+        <menu>
+		    <item
+		        android:id="@+id/action_sort_by_title"
+		        android:title="@string/sort_by_title"/>
+		    <item
+		        android:id="@+id/action_sort_by_status"
+		        android:title="@string/sort_by_status"/>
+		    <item
+		        android:id="@+id/action_sort_by_added_date"
+		        android:title="@string/sort_by_added_date"/>
+		    <item
+		        android:id="@+id/action_sort_by_solution_date"
+		        android:title="@string/sort_by_solution_date"/>
+		        
+		</menu>
+	</item>
+</menu>

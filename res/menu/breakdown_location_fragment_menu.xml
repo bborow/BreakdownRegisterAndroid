@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:showAsAction="always"
+        android:title="@string/map_layers"
+        android:icon="@drawable/ic_action_map"
+        >
+        <menu>
+            <item
+                android:id="@+id/action_type_normal"
+                android:title="@string/type_normal">
+            </item>
+            <item
+                android:id="@+id/action_type_hybrid"
+                android:title="@string/type_hybrid"
+                >
+            </item>
+            <item
+                android:id="@+id/action_type_terrain"
+                android:title="@string/type_terrain"
+                >
+            </item>
+        </menu>
+    </item>
+</menu>

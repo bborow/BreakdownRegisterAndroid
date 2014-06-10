@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:layout_margin="4dp">
+
+    <ListView
+        android:id="@+id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    	android:dividerHeight="4dp">
+    </ListView>
+    
+    <TextView
+        android:id="@id/android:empty"
+        android:layout_width="match_parent"
+		android:layout_height="match_parent"
+        android:text="@string/empty_list_message"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_horizontal"
+        />
+
+</LinearLayout>
